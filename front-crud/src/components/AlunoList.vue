@@ -34,11 +34,7 @@
 <script>
 import AlunoDataService from "../services/AlunoDataService";
 export default {
-<<<<<<< HEAD
   name: "alunos-list",
-=======
-  name: "tutorials-list",
->>>>>>> a1bd04b114b9440c8498b9b228564e9a772c2acd
   data() {
     return {
       alunos: [],
