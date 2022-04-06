@@ -4,8 +4,8 @@
       <div className="d-flex align-center mr-2">
         NPI-Crud
       </div>
-      <v-btn to="/tutorials" text>
-        Tutorials
+      <v-btn to="/alunos" text>
+        Alunos
       </v-btn>
       <v-btn to="/add" text>
         Add

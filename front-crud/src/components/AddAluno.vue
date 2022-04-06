@@ -1,62 +1,62 @@
 <template>
   <div class="submit-form mt-3 mx-auto">
-    <p class="headline">Add Tutorial</p>
+    <p class="headline">Adicionar Aluno</p>
     <div v-if="!submitted">
       <v-form ref="form" lazy-validation>
         <v-text-field
-            v-model="tutorial.title"
-            :rules="[(v) => !!v || 'Title is required']"
-            label="Title"
+            v-model="aluno.nome"
+            :rules="[(v) => !!v || 'Nome é obrigatório']"
+            label="Nome"
             required
         ></v-text-field>
         <v-text-field
-            v-model="tutorial.description"
-            :rules="[(v) => !!v || 'Description is required']"
-            label="Description"
+            v-model="aluno.curso"
+            :rules="[(v) => !!v || 'Curso é obrigatório']"
+            label="Curso"
             required
         ></v-text-field>
       </v-form>
-      <v-btn color="primary" class="mt-3" @click="saveTutorial">Submit</v-btn>
+      <v-btn color="primary" class="mt-3" @click="saveAluno">Adicionar</v-btn>
     </div>
     <div v-else>
       <v-card class="mx-auto">
         <v-card-title>
-          Submitted successfully!
+          Aluno adicionado!
         </v-card-title>
         <v-card-subtitle>
-          Click the button to add new Tutorial.
+          Clique no botão abaixo para adicionar um novo aluno.
         </v-card-subtitle>
         <v-card-actions>
-          <v-btn color="success" @click="newTutorial">Add</v-btn>
+          <v-btn color="success" @click="newAluno">Add</v-btn>
         </v-card-actions>
       </v-card>
     </div>
   </div>
 </template>
 <script>
-import TutorialDataService from "../services/TutorialDataService";
+import AlunoDataService from "../services/AlunoDataService";
 export default {
-  name: "add-tutorial",
+  name: "add-aluno",
   data() {
     return {
-      tutorial: {
+      aluno: {
         id: null,
-        title: "",
-        description: "",
-        published: false,
+        nome: "",
+        curso: "",
+        ativo: false,
       },
       submitted: false,
     };
   },
   methods: {
-    saveTutorial() {
+    saveAluno() {
       var data = {
-        title: this.tutorial.title,
-        description: this.tutorial.description,
+        nome: this.aluno.nome,
+        curso: this.aluno.curso,
       };
-      TutorialDataService.create(data)
+      AlunoDataService.create(data)
           .then((response) => {
-            this.tutorial.id = response.data.id;
+            this.aluno.id = response.data.id;
             console.log(response.data);
             this.submitted = true;
           })
@@ -64,9 +64,9 @@ export default {
             console.log(e);
           });
     },
-    newTutorial() {
+    newAluno() {
       this.submitted = false;
-      this.tutorial = {};
+      this.aluno = {};
     },
   },
 };
